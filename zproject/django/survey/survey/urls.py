@@ -18,4 +18,10 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+   re_path(r'^dashboard/.*$', ensure_csrf_cookie(TemplateView.as_view(template_name="ang/dashboard.html")),name="dashboard"),
+   ]   
+
+
+
 ]

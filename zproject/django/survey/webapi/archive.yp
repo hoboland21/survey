@@ -1,0 +1,71 @@
+
+
+class StudentViewSet(viewsets.ModelViewSet):
+  queryset = StudentCard.objects.all()
+  serializer_class = StudentCardSerializer  
+
+class ParentViewSet(viewsets.ModelViewSet) :
+
+  queryset = ParentCard.objects.all()
+  serializer_class = ParentCardSerializer  
+ 
+class ParentTagViewSet(viewsets.ModelViewSet) :
+  queryset = ParentTag.objects.all()
+  serializer_class = ParentTagSerializer  
+  
+class RegisterViewSet(viewsets.ModelViewSet) :
+  queryset = Register.objects.all()
+  serializer_class = RegisterSerializer  
+  
+
+#=====================================================================
+
+
+class StudentSearch(APIView):
+  def get(self, request, query, format=None) :
+    student = StudentCard.objects.filter(Q(last_name__icontains=query) |Q(first_name__icontains=query))
+    serializer = StudentCardSerializer(student, many=True)
+    return Response(serializer.data)
+
+class ParentSearch(APIView):
+  def get(self, request, query, format=None) :
+    parent = ParentCard.objects.filter(Q(last_name__icontains=query) |Q(first_name__icontains=query))
+    serializer = ParentCardSerializer(parent, many=True)
+    return Response(serializer.data)
+
+
+
+class FamilySearch(generics.ListCreateAPIView) :
+  def get_queryset(self) :
+    queryset = ParentTag.objects.filter(student_card=self.kwargs["pk"])
+    return queryset
+  serializer_class = ParentTagSerializer
+
+
+
+
+#from .views import ListStudents
+
+#router = routers.DefaultRouter()
+#router.register(r'students',ListStudents)
+# path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+# path('api_auth/',include('rest_framework.urls')),
+
+
+
+
+router = DefaultRouter()
+router.register('student',StudentViewSet,base_name='student')
+router.register('parent',ParentViewSet,base_name='parent')
+router.register('register',RegisterViewSet,base_name='register')
+router.register('parenttag',ParentTagViewSet,base_name='parenttag')
+
+
+
+
+
+ ###   Used for admin operatorts searching on text names
+    path('parent/search/<query>/',ParentSearch.as_view()), 
+    path('student/search/<query>/',StudentSearch.as_view()),
+   
+    path('student/<int:pk>/family',FamilySearch.as_view()),
