@@ -18,9 +18,11 @@ from django.urls import path, include
 from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework.routers import DefaultRouter
+from .views import UserList
 
 urlpatterns = [
-    
+   path('users/',UserList.as_view()),
+
 ]   
 
 urlpatterns=format_suffix_patterns(urlpatterns)

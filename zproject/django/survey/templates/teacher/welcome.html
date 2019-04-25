@@ -1,1 +1,11 @@
-<h1>HI</h1>
+{% extends "base/base.html" %}
+{% load static %}
+
+
+
+{% block body_main %}
+
+<div><a href="{% url 'main' %}">Main Survey Page</a> </div>
+<div><a href="{% url 'screate' %}">Survey Create Page</a> </div>
+
+{% endblock %}

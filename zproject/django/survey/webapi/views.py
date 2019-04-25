@@ -7,5 +7,12 @@ from django.http import Http404
 
 from django.contrib.auth.models import User
 from django.db.models import Q
+from .serializers import UserSerializer
 
 
+
+class UserList(APIView):
+  def get(self, request,  format=None) :
+    user =  User.objects.all()
+    serializer = UserSerializer(user, many=True)
+    return Response(serializer.data)

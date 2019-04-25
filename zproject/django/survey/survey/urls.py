@@ -17,13 +17,15 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.views.decorators.csrf import ensure_csrf_cookie
 from teacher.views import welcome
+from manager.tools import screate
 from django.views.generic import TemplateView
 
 
 urlpatterns = [
     path('',welcome, name='welcome'),
     path('admin/', admin.site.urls),
- #   path('webapi/',include ('webapi.urls')),
+    path('screate/',screate,name="screate"),
+    path('webapi/',include ('webapi.urls')),
     re_path(r'^main/.*$', ensure_csrf_cookie(TemplateView.as_view(template_name="ang/main.html")),name="main"),
    ]   
 
