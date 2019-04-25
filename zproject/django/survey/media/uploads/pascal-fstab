@@ -1,0 +1,18 @@
+
+#
+# /etc/fstab
+# Created by anaconda on Thu Oct 19 09:10:31 2017
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+/dev/mapper/scientific-root /                       xfs     defaults        0 0
+UUID=1d31b8e5-a7a0-47b6-8dc5-8cb3becfa232 /boot                   xfs     defaults        0 0
+/dev/mapper/scientific-swap swap                    swap    defaults        0 0
+UUID=472365c8-4e49-4252-a8f8-5eec47e8306f /home/quasar/Documents   xfs defaults 0 0  
+//eagle/ShareSpace /nfs/ShareSpace  cifs credentials=/etc/wincreds,uid=quasar,gid=quasar 0 0 
+neptune:/nfs/external_3  /nfs/external_3   nfs  defaults 0  0
+pisces:/home/storage1  /nfs/storage1   	nfs	defaults 0 0
+UUID=76966319-cd73-4311-9591-b3ddf1a52699  /home/quasar/local xfs defaults  0 0 
+UUID=7110fa6b-d6b0-4fa7-8e3d-75c41dc7cb2e /usr/local xfs defaults 0 0 
+UUID=99973bd2-f40b-4b0a-bbbc-e2a84c7e5a35 /home/quasar/offload ext4 defaults 0 0

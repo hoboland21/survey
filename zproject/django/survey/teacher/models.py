@@ -26,6 +26,7 @@ class Items(models.Model):
     layout          =   models.ForeignKey(Layout, on_delete=models.CASCADE)
     question        =   models.ForeignKey(Question, on_delete=models.CASCADE)
     sequence        =   models.SmallIntegerField()
+    page            =   models.SmallIntegerField(default=1)
 
 class Student(models.Model):
     layout          =   models.ForeignKey(Layout, on_delete=models.CASCADE)
@@ -37,3 +38,12 @@ class Answers(models.Model):
     student         =   models.ForeignKey(Student, on_delete=models.CASCADE)
     question        =   models.ForeignKey(Question, on_delete=models.CASCADE)
     answer          =   models.CharField(max_length=10)
+
+class ImportFile(models.Model):
+    description   = models.CharField(max_length=256, blank=True)
+    document      = models.FileField(upload_to='uploads/' )
+    created       = models.DateTimeField(auto_now_add=True)
+
+
+  
+
