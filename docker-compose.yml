@@ -28,7 +28,7 @@ services:
     volumes:
       - ./zproject:/usr/src/app/
     ports:
-        - "9000:9000"
+        - "8100:8100"
 
     entrypoint: 
       - /bin/sh
