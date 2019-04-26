@@ -1,0 +1,68 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+
+
+{% block body_main %}
+<h3>Survey</h3>
+<div class="row">
+    <div class="col-md-6">
+        <table>
+        {{ survey_form.as_table}}
+        </table>
+
+
+    </div>
+    <div class="col-md-6">
+        <table>
+        {% for ly in layouts  %}
+           <tr>
+                <td> {{ly.version}}</td>
+                <td> {{ly.description}}</td>
+                <td> {{ly.designer}}</td>
+                <td> {{ly.label}}</td>
+                <td> {{ly.group}}</td>
+                <td> {{ly.created}}</td>
+           </tr>
+        {% endfor %}
+        
+        </table>
+    
+    </div>
+
+
+</div>
+
+<hr>
+<h3>Layout</h3>
+<div class="row">
+    
+    <div class="col-md-6">
+<form method="POST">
+    {% csrf_token %}
+    <table>
+    {{ layout_form.as_table}}
+    </table>
+
+    <button name="add_layout">Add layout</button>
+    <input type="hidden" name="survey_id" value={{survey_id}}>
+</form>
+
+    </div>
+    <div class="col-md-6">
+        <table>
+        {% for i in items  %}
+           <tr>
+                <td> {{i.page}}</td>
+                <td> {{i.sequence}}</td>
+                <td> {{i.question.question}}</td>
+           </tr>
+        {% endfor %}
+        
+        </table>
+    
+    </div>
+</div>
+
+
+{% endblock %}

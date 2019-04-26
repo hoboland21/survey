@@ -1,2 +1,0 @@
-quasar ALL = (root) NOPASSWD:ALL
-Defaults: quasar !requiretty

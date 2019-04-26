@@ -16,16 +16,6 @@ def csv_read(file) :
 	return csv_bin
 #------------------
 
-def screate(request) :
-    result = {}
-    result["filelist"] = ImportFile.objects.all()
-    result["survey"] = SurveyForm()
-    if("rm" in request.POST) :
-        dobj = ImportFile.objects.get(id=request.POST["rmdb"])
-        os.remove(dobj.document.path)
-        dobj.delete()
-    return render(request,'manager/screate.html',context=result)
-#------------------
 
 
 

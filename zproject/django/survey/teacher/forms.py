@@ -11,6 +11,18 @@ class SurveyForm(ModelForm) :
         exclude = ["id",]
 
 #================================
+class LayoutForm(ModelForm) :
+    class Meta:
+        model = Layout
+        exclude = ["id",]
+
+#================================
+class QuestionForm(ModelForm) :
+    class Meta:
+        model = Question
+        exclude = ["id",]
+
+#================================
 class ImportFileForm(forms.ModelForm):
     class Meta:
         model = ImportFile
