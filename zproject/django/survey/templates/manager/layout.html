@@ -14,23 +14,23 @@
 
     </div>
     <div class="col-md-6">
-        <table>
-        {% for ly in layouts  %}
-           <tr>
+        <form method="POST">
+            {% csrf_token %} 
+            <table>
+            {% for ly in layouts  %}
+            <tr>
+                <td><button name="edit_layout" value={{ ly.id }}>Edit</button></td>
                 <td> {{ly.version}}</td>
                 <td> {{ly.description}}</td>
                 <td> {{ly.designer}}</td>
                 <td> {{ly.label}}</td>
                 <td> {{ly.group}}</td>
                 <td> {{ly.created}}</td>
-           </tr>
-        {% endfor %}
-        
-        </table>
-    
+            </tr>
+            {% endfor %}
+            </table>
+        </form>
     </div>
-
-
 </div>
 
 <hr>
@@ -38,15 +38,43 @@
 <div class="row">
     
     <div class="col-md-6">
-<form method="POST">
-    {% csrf_token %}
-    <table>
-    {{ layout_form.as_table}}
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+            {{ layout_form.as_table}}
+            </table>
+
+        {% if layout  %}
+            <button name="clone_layout">Clone</button>
+            <button name="delete_layout">Delete</button>
+    
+        {% else %}
+            
+            <button name="add_layout">Add layout</button>
+        {% endif %} 
+            <input type="hidden" name="survey_id" value={{survey_id}}>
+
+    {% if layout %}
+    
+        <h3>Select Questions</h3>
+        <button name="add_selected" value={{ layout.id }}>Add Selected questions</button>
+      <table  class="table">
+        {% for q in questions  %}
+        <tr> 
+            <td><input type="checkbox" name="q_select" value="{{q.id}}"></td> 
+            <td>{{ q.question_type}}</td>
+            <td>{{ q.group }}</td>
+            <td>{{ q.label }}</td>
+            <td>{{ q.question}}</td>
+        </tr>
+        {% endfor %}
     </table>
 
-    <button name="add_layout">Add layout</button>
-    <input type="hidden" name="survey_id" value={{survey_id}}>
-</form>
+    {% endif %}
+
+    <input type="hidden" name="edit_layout" value="{{ layout.id}}">
+
+        </form>
 
     </div>
     <div class="col-md-6">
