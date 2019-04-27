@@ -5,7 +5,7 @@ import datetime
 
 
 class Question(models.Model):
-    question_type   =   models.CharField(max_length=30,blank=True)
+    format          =   models.CharField(max_length=30,blank=True)
     question        =   models.CharField(max_length=2048)
     label           =   models.CharField(max_length=120,blank=True)
     group           =   models.CharField(max_length=120,blank=True)

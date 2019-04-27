@@ -62,7 +62,7 @@
         {% for q in questions  %}
         <tr> 
             <td><input type="checkbox" name="q_select" value="{{q.id}}"></td> 
-            <td>{{ q.question_type}}</td>
+            <td>{{ q.format}}</td>
             <td>{{ q.group }}</td>
             <td>{{ q.label }}</td>
             <td>{{ q.question}}</td>
@@ -77,18 +77,41 @@
         </form>
 
     </div>
+
+
+
+
+
+
     <div class="col-md-6">
-        <table>
-        {% for i in items  %}
-           <tr>
-                <td> {{i.page}}</td>
-                <td> {{i.sequence}}</td>
+            <table class="table">
+            <tr>
+                    <th></th>
+                    <th> Page</th>
+                    <th> Sequence</th>
+                    <th>Format</th>
+                    <th> Question</th>
+                    <th></th>
+            </tr>
+
+            {% for i in items  %}
+        <form method="POST">
+            {% csrf_token %}
+            <tr>
+                <td> 
+                    <button name="item_update" value="{{ i.id }}">Update</button> 
+                </td>
+                <td> <input type="number" name="page" value="{{i.page}}"></td>
+                <td> <input type="number" name="sequence" value="{{i.sequence}}"></td>
+                <td> {{i.question.format}}</td>
                 <td> {{i.question.question}}</td>
-           </tr>
-        {% endfor %}
-        
-        </table>
-    
+                <td>    <button name="item_remove" value="{{ i.id }}">Remove</button> </td>
+            </tr>
+            <input type="hidden" name="edit_layout" value={{layout.id}}>
+        </form>
+            {% endfor %}
+            
+            </table>
     </div>
 </div>
 

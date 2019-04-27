@@ -67,7 +67,7 @@
         {% for q in questions  %}
         <tr> 
             <td><input type="checkbox" name="q_select" value="{{q.id}}"></td> 
-            <td>{{ q.question_type}}</td>
+            <td>{{ q.format}}</td>
             <td>{{ q.group }}</td>
             <td>{{ q.label }}</td>
             <td>{{ q.question}}</td>
@@ -80,7 +80,7 @@
         {% for q in question_label_count  %}
         <tr> 
             <td>{{ q.label }}</td>
-            <td>{{ q.num_labels }}</td>
+            <td>{{ q.num_labels }}</gtd>
         </tr>
         {% endfor %}
     </table>
