@@ -14,7 +14,7 @@ class SurveyForm(ModelForm) :
 class LayoutForm(ModelForm) :
     class Meta:
         model = Layout
-        exclude = ["id",]
+        exclude = ["id","survey"]
 
 #================================
 class QuestionForm(ModelForm) :

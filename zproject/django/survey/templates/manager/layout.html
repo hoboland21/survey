@@ -4,116 +4,111 @@
 
 
 {% block body_main %}
-<h3>Survey</h3>
-<div class="row">
-    <div class="col-md-6">
-        <table>
-        {{ survey_form.as_table}}
-        </table>
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Survey</h3>
 
-
-    </div>
-    <div class="col-md-6">
-        <form method="POST">
-            {% csrf_token %} 
-            <table>
-            {% for ly in layouts  %}
-            <tr>
-                <td><button name="edit_layout" value={{ ly.id }}>Edit</button></td>
-                <td> {{ly.version}}</td>
-                <td> {{ly.description}}</td>
-                <td> {{ly.designer}}</td>
-                <td> {{ly.label}}</td>
-                <td> {{ly.group}}</td>
-                <td> {{ly.created}}</td>
-            </tr>
-            {% endfor %}
+            <table class="table">
+            {{ survey_form.as_table}}
             </table>
-        </form>
+        </div>
+
+
+
+        <div class="col-md-9">
+
+            <form method="POST">
+                {% csrf_token %} 
+                <table class="table">
+                {% for ly in layouts  %}
+                <tr>
+                    <td><button name="edit_layout" value={{ ly.id }}>Edit</button></td>
+                    <td> {{ly.version}}</td>
+                    <td> {{ly.description}}</td>
+                    <td> {{ly.designer}}</td>
+                    <td> {{ly.label}}</td>
+                    <td> {{ly.group}}</td>
+                    <td> {{ly.created}}</td>
+                </tr>
+                {% endfor %}
+                </table>
+            </form>
+        
+        </div>
     </div>
-</div>
 
 <hr>
-<h3>Layout</h3>
-<div class="row">
-    
-    <div class="col-md-6">
-        <form method="POST">
-            {% csrf_token %}
-            <table>
-            {{ layout_form.as_table}}
-            </table>
 
-        {% if layout  %}
-            <button name="clone_layout">Clone</button>
-            <button name="delete_layout">Delete</button>
-    
-        {% else %}
-            
-            <button name="add_layout">Add layout</button>
-        {% endif %} 
-            <input type="hidden" name="survey_id" value={{survey_id}}>
+{% if layout %}
 
-    {% if layout %}
-    
-        <h3>Select Questions</h3>
-        <button name="add_selected" value={{ layout.id }}>Add Selected questions</button>
-      <table  class="table">
-        {% for q in questions  %}
-        <tr> 
-            <td><input type="checkbox" name="q_select" value="{{q.id}}"></td> 
-            <td>{{ q.format}}</td>
-            <td>{{ q.group }}</td>
-            <td>{{ q.label }}</td>
-            <td>{{ q.question}}</td>
-        </tr>
-        {% endfor %}
+    <h3>Select Questions</h3>
+    <button name="add_selected" value={{ layout.id }}>Add Selected questions</button>
+    <table  class="table">
+    {% for q in questions  %}
+    <tr> 
+        <td><input type="checkbox" name="q_select" value="{{q.id}}"></td> 
+        <td>{{ q.format}}</td>
+        <td>{{ q.group }}</td>
+        <td>{{ q.label }}</td>
+        <td>{{ q.question}}</td>
+    </tr>
+    {% endfor %}
     </table>
 
-    {% endif %}
+{% endif %}
+{% if questions %}
 
-    <input type="hidden" name="edit_layout" value="{{ layout.id}}">
+    </form>
 
-        </form>
+        <table class="table">
+        <tr>
+                <th></th>
+                <th> Page</th>
+                <th> Sequence</th>
+                <th>Format</th>
+                <th> Question</th>
+                <th></th>
+        </tr>
 
-    </div>
-
-
-
-
-
-
-    <div class="col-md-6">
-            <table class="table">
-            <tr>
-                    <th></th>
-                    <th> Page</th>
-                    <th> Sequence</th>
-                    <th>Format</th>
-                    <th> Question</th>
-                    <th></th>
-            </tr>
-
-            {% for i in items  %}
-        <form method="POST">
-            {% csrf_token %}
-            <tr>
-                <td> 
-                    <button name="item_update" value="{{ i.id }}">Update</button> 
-                </td>
-                <td> <input type="number" name="page" value="{{i.page}}"></td>
-                <td> <input type="number" name="sequence" value="{{i.sequence}}"></td>
-                <td> {{i.question.format}}</td>
-                <td> {{i.question.question}}</td>
-                <td>    <button name="item_remove" value="{{ i.id }}">Remove</button> </td>
-            </tr>
-            <input type="hidden" name="edit_layout" value={{layout.id}}>
-        </form>
-            {% endfor %}
-            
-            </table>
-    </div>
+        {% for i in items  %}
+    <form method="POST">
+        {% csrf_token %}
+        <tr>
+            <td> 
+                <button name="item_update" value="{{ i.id }}">Update</button> 
+            </td>
+            <td> <input type="number" name="page" value="{{i.page}}"></td>
+            <td> <input type="number" name="sequence" value="{{i.sequence}}"></td>
+            <td> {{i.question.format}}</td>
+            <td> {{i.question.question}}</td>
+            <td>    <button name="item_remove" value="{{ i.id }}">Remove</button> </td>
+        </tr>
+    </form>
+        {% endfor %}
+        
+        </table>
+        {% endif %}
 </div>
+ 
+ 
+ 
+ 
+ 
+           <h3>Layout</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <table  class="table">
+                    {{ layout_form.as_table}}
+                </table>
 
+                {% if layout  %}
+                    <button name="clone_layout">Clone</button>
+                    <button name="delete_layout">Delete</button>
+                {% else %}
+                    <button name="add_layout">Add layout</button>
+                {% endif %} 
+            </form>
+        </div>
+ 
 
 {% endblock %}

@@ -19,6 +19,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from teacher.views import welcome
 from manager.tools import upload_file
 from manager.screate import screate
+from manager.survey import survey
 from manager.layout import layout
 
 from django.views.generic import TemplateView
@@ -28,6 +29,7 @@ urlpatterns = [
     path('',welcome, name='welcome'),
     path('admin/', admin.site.urls),
     path('screate/',screate,name="screate"),
+    path('survey/',survey,name="survey"),
     path('upload/', upload_file,name='upload'),
     path('layout/', layout, name='layout'),
     path('webapi/',include ('webapi.urls')),

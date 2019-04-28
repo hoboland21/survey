@@ -3,7 +3,7 @@ from django.db.models  import Count
 from .tools  import *
 import os
 
-QFIELDS = ["question_type", "question", "label", "group"]
+QFIELDS = ["format", "question", "label", "group"]
 
 def delfile(id) :
     dobj = ImportFile.objects.get(id=id)
@@ -30,6 +30,7 @@ def screate(request) :
     result["survey_list"] = Survey.objects.all()
     result["file_list"] = ImportFile.objects.all()
     result["question_label_count"] = Question.objects.values("label").annotate(num_labels = Count("id"))
+    
     result["questions"] = Question.objects.all()
     result["survey"] = SurveyForm()
 
