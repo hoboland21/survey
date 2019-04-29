@@ -18,24 +18,28 @@
 
 </head>
 <body >
-    <div class="container-fluid">
-        <div class="row">
-            
-            <div class="col-md-3">
-            </div>
-  
-            <div class="col-md-6">
-                <div class="mt-2 mb-4 " style="text-align:center">
-                        <div><img src='/static/img/MCSIcon.png'></div>
-                </div>
-            </div>
-            
-            <div class="col-md-3">
-            </div>
+
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <img src="/static/img/MCSIcon.png" width="40"  >
+      Mount Carmel School Survey Dolphin
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href="{% url 'main' %}">Main Survey Page</a>
+                <a class="nav-item nav-link" href="{% url 'survey' %}">Survey Create Page</a> 
+                <a class="nav-item nav-link" href="{% url 'upload' %}">Upload CSV File of questions</a>
         </div>
-        <hr>
+        
+    </div>
+  </nav>  
+  <div class="container-fluid">
             {% block body_main   %}
             {% endblock %}
-    </div>
+   </div>
 </body>
 </html>

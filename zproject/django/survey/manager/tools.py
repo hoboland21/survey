@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 
 
-from teacher.forms import ImportFileForm, SurveyForm
-from teacher.models import ImportFile , Survey, Question, Layout
+from teacher.forms import ImportFileForm, SurveyForm, LayoutForm
+from teacher.models import ImportFile , Survey, Question, Layout, Items
 import re
 import csv
 #------------------
@@ -43,8 +43,12 @@ class SurveyClass(object) :
     self.survey = Survey.objects.get(id=id)
   
   def set_layout(self,id) :
-    self.layout =  Layout.objects.get(id=id)
-    self.questions = Items.objects.filter(layout__id=id)
+    if id == 0 :
+      self.layout_form = LayoutForm()
+    else:
+      self.layout =  Layout.objects.get(id=id)
+      self.layout_form = LayoutForm(instance=self.layout)
+      self.questions = Items.objects.filter(layout__id=id)
 
 
 
