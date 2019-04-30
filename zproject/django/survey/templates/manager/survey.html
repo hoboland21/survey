@@ -42,91 +42,73 @@
         {% endif %}
 
     </div>
-    <div class="col-md-3">
-        <p>Survey Versions</p>
-        {% if sclass.survey %}
-            <form method="POST">
-                {% csrf_token %}
-                <select name="layout_select" >
-                    <option value="null">--Select a Layout--</option>
-                    {% for l in sclass.layouts %}
-                    <option value="{{l.id}}"
-                    {% if sclass.layout.id == l.id %} selected {% endif %}
-                    >{{l.version}} - {{l.label}} - {{l.group}} </option>
-                    
-                    {% endfor %}
-                    <option value="new">--Create A New Layout--</option>
 
-                </select>
-                <button>Go</button>
-                <input type="hidden" name="survey" value="{{sclass.survey.id}}">
-                {% if sclass.layout_form %}
-                    <table>
-                        {{ sclass.layout_form.as_table}}
-                    </table>
-                    {% if not sclass.layout %}
-                    <button name="add_layout">Create</button>
-                    {% endif %}
-                {% endif %}
-            </form>
-        {% endif %}
-     </div>
-    <div class="col-md-3">
-        {% if select_questions %}
-            <form method="POST">
+    <div class="col-md-9">
+
+    {% if sclass.questions %}
+
+    <select name="qaction" id="">
+        <option value="noop">--select action--</option>
+        <option value="delete">Delete Marked</option>
+    </select>
+     <button>Go</button>
+    <div style="height:300px;overflow:scroll" >
+        <form method="POST">
             {% csrf_token %}
-                
-                <h3>Question</h3>
-            <button name="add_selected" value={{ layout.id }}>Add Selected Questions</button>
-                <div style="height:300px; overflow:scroll" >
-                
-                    {% for q in qlabels  %}
-                    <div>
-                        <input type="checkbox" name="q_label_select" value={{q.label}}> 
-                        <button name="show_questions" value="{{q.label}}"> {{ q.label }}</button>
-                        {{ q.num_labels }}
-                    </div>
-                        {% if show_questions == q.label %}
-                            {% for qq in q.questions %}
-                                <div>
-                                    <input type="checkbox" name="q_select" value={{qq.id}}>{{ qq.question }}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    {% endfor %}
-                
+                {% for q in  sclass.questions %}
+                    <div><input type="checkbox" name="qlist" value="{{q.id}}">{{q.question}}</div>
+                {% endfor %}
             <input type="hidden" name="survey" value="{{sclass.survey.id}}">
-            <input type="hidden" name="layout" value="{{sclass.layout.id}}">
-            <input type="hidden" name="select_questions" value="1">
-            </form>
-        {% endif %}
+        </form>
     </div>
- </div>   
+    {% endif %}
+    </div>
 
-<hr> 
-{% if sclass.layout %}
-<form method="POST">
-    {% csrf_token %}
-    Our current layout is {{ sclass.layout.version}} -  {{ sclass.layout.designer}}
-    <input type="hidden" name="survey" value="{{ sclass.survey.id }}">
-    <input type="hidden" name="layout" value="{{ sclass.layout.id }}">
-    <button name="select_questions" > Select Questions</button>
-    <input type="hidden" name="survey" value="{{ sclass.survey.id }}">
-    <input type="hidden" name="layout" value="{{ sclass.layout.id }}">
-</form>
-<table>
-{% for q in sclass.questions %}
-<tr>
-    <td> {{ q.question.label }} </td>
-    <td> {{ q.question.format }} </td>
-    <td> {{ q.question.question }}</td>
-</tr>
+</div>   
 
-{% endfor %}
-</table>
 
+{% if sclass.survey.id %}
+<hr>
+<div>
+    <button name="add_selected" type="submit" value={{ layout.id }}>Add Selected Questions</button>
+</div>
+
+<div style="height:300px; overflow:scroll" class="row">
+    <div class="col-md-4">
+        <form method="POST">
+            {% csrf_token %}
+            <h3>Question</h3>
+            <div> 
+                {% for q  in qlabels %}
+                    <div>
+                        <input type="checkbox" name="qlabel_list" value="{{ q.label }}">
+                        <button name="label_select" value="{{ q.label}}">{{q.label}}</button>
+                    </div>
+                {% endfor %}
+                 <input type="hidden" name="survey" value="{{sclass.survey.id}}">
+                 <input type="hidden" name="last_label_select" value="{{label_select}}">
+            </div> 
+        </form>
+    </div>
+    <div class="col-md-4">
+        {% for i in q.questions %}
+            <div><input type="checkbox" name="qlist" > {{ i.question }}</div>
+        {% endfor %} 
+    </div>
+
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ question_upload_form.as_p }}
+            <button type="submit"  name="upload_file">Upload</button>
+            
+            {% if sclass %}
+                <input type="hidden" name="survey" value="{{sclass.survey.id}}">
+            {% endif %}
+        </form>
+    </div>
+</div>
 {% endif %}
-
 
 
 {% endblock %}

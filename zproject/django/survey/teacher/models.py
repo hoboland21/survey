@@ -22,17 +22,8 @@ class Survey(models.Model):
     def __str__(self) :
         return "{} -- {}".format(self.name,self.label)
 
-class Layout(models.Model):
-    survey          =   models.ForeignKey(Survey, on_delete=models.CASCADE)
-    version         =   models.CharField(max_length=1024)
-    description     =   models.CharField(max_length=1024)
-    designer        =   models.CharField(max_length=128)
-    label           =   models.CharField(max_length=120,blank=True)
-    group           =   models.CharField(max_length=120,blank=True)
-    created         =   models.DateTimeField(auto_now=True)
-
 class Items(models.Model):
-    layout          =   models.ForeignKey(Layout, on_delete=models.CASCADE)
+    survey          =   models.ForeignKey(Survey, on_delete=models.CASCADE)
     label           =   models.CharField(max_length=120,blank=True)
     group           =   models.CharField(max_length=120,blank=True)
     question        =   models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -40,7 +31,7 @@ class Items(models.Model):
     page            =   models.SmallIntegerField(default=1)
 
 class Student(models.Model):
-    layout          =   models.ForeignKey(Layout, on_delete=models.CASCADE)
+    survey          =   models.ForeignKey(Survey, on_delete=models.CASCADE)
     group           =   models.CharField(max_length=120,blank=True)
     label           =   models.CharField(max_length=120,blank=True)
     test_code       =   models.CharField(max_length=32)

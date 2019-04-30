@@ -4,10 +4,16 @@
 {% block body_main %}
 
 <h1>Upload Files</h1>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
+ 
+  <form method="POST">
+    {% for f in  filelist %}
+
+    <div><input type="checkbox" name="file_select"> {{ f.description }} - {{ f.created }} </div>
+    {% endfor %}
+
+  
+  
+  
   </form>
 
 {% endblock %}

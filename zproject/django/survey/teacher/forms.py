@@ -11,12 +11,6 @@ class SurveyForm(ModelForm) :
         exclude = ["id",]
 
 #================================
-class LayoutForm(ModelForm) :
-    class Meta:
-        model = Layout
-        exclude = ["id","survey"]
-
-#================================
 class QuestionForm(ModelForm) :
     class Meta:
         model = Question
