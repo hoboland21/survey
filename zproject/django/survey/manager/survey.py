@@ -24,13 +24,23 @@ def add_qlabel_list(request,sclass):
 def survey(request) :
     result = {}
     sclass = 0
+    if "update_item" in request.POST :
+        item = Items.objects.get(id=request.POST["update_item"])
+        item.page = request.POST["page"]
+        item.sequence = request.POST["sequence"]
+        item.save()
 
-# action on selected items in survey    
-    if "qaction" in request.POST:
-        for q in request.POST.getlist("qlist") :
-            if request.POST["qaction"] == "delete" :
-                Items.objects.get(id=q).delete()
-
+    if "label_select" in request.POST :
+        label_questions = Question.objects.filter(label=request.POST["label_select"])
+        if request.POST["last_label_select"] == ""  :
+            result["last_label_select"] = request.POST["label_select"]
+        elif request.POST["last_label_select"]  == request.POST["label_select"]: 
+            label_questions = []
+        result["label_questions"] = label_questions 
+        result["label_select"] = request.POST["label_select"]
+    if "item_delete" in request.POST :
+        Items.objects.get(id=request.POST["item_delete"]).delete()
+ 
     if "survey" in request.POST :
         sclass = SurveyClass(request.POST["survey"])
         result["survey"] = request.POST['survey']

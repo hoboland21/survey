@@ -27,5 +27,5 @@ class SurveyClass(object) :
   def set_survey(self,id) :
     self.survey = Survey.objects.get(id=id)
     self.survey_form = SurveyForm(instance=self.survey)
-    self.questions = Items.objects.filter(survey__id=id)
+    self.questions = Items.objects.filter(survey__id=id).order_by("page","sequence")
 
