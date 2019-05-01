@@ -38,6 +38,7 @@ def survey(request) :
             label_questions = []
         result["label_questions"] = label_questions 
         result["label_select"] = request.POST["label_select"]
+    
     if "item_delete" in request.POST :
         Items.objects.get(id=request.POST["item_delete"]).delete()
  

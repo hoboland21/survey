@@ -22,7 +22,7 @@
         <div class="p-3">
             <form method="POST">
                 {% csrf_token %}
-                <select name="survey_select" >
+                <select onchange="this.form.submit()" name="survey_select" >
                     <option value="null">--Select a Survey--</option>
                     {% for s in survey_list %}
                     <option value="{{s.id}}"
@@ -33,7 +33,6 @@
                     <option value="new">--Create A New Survey--</option>
 
                 </select>
-                <button>Go</button>
             </form>
         </div>
         <br>
