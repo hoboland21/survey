@@ -18,6 +18,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   
+    this.surveyService.getSurveyList().subscribe(
+      surveys => this.surveys = surveys,
+      error => this.errorMessage = <any>error
+    );
     
   
 
