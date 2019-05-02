@@ -7,12 +7,46 @@ from django.http import Http404
 
 from django.contrib.auth.models import User
 from django.db.models import Q
-from .serializers import UserSerializer
+from .serializers import *
 
-
-
+#=============================
 class UserList(APIView):
   def get(self, request,  format=None) :
     user =  User.objects.all()
     serializer = UserSerializer(user, many=True)
     return Response(serializer.data)
+#=============================
+class SurveyList(APIView):
+  def get(self, request, format=None) :
+    survey = Survey.objects.all()
+    serializer = SurveySerializer(survey, many=True)      
+    return Response(serializer.data)
+#=============================
+class SurveySearch(APIView):
+  def get(self, request, id, format=None) :
+    survey = Survey.objects.get(id=id)
+    serializer = SurveySerializer(survey)      
+    return Response(serializer.data)
+#=============================
+class QuestionSearch(APIView):
+  def get(self, request, id, format=None) :
+    question = Question.objects.filter(survey__id=id)
+    serializer = QuestionSerializer(question, many=True)      
+    return Response(serializer.data)
+#=============================
+class AnswerSend(APIView):
+  def post(self, request, format=None):
+    serializer = AnswerSerializer(data=request.data)
+    if serializer.is_valid():
+      serializer.save()
+      return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#=============================
+class StudentSend(APIView):
+  def post(self, request, format=None):
+    serializer = StudentSerializer(data=request.data)
+    if serializer.is_valid():
+      serializer.save()
+      return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

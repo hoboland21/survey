@@ -53,6 +53,20 @@
                 </table>
             </form>
         {% endif %}
+    {% if sclass.survey.id %}
+    <hr>
+    <p><b>CSV Question File Upload</b></p>
+    <hr>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ question_upload_form.as_p }}
+        <button type="submit"  name="upload_file">Upload</button>
+        
+        {% if sclass %}
+            <input type="hidden" name="survey" value="{{sclass.survey.id}}">
+        {% endif %}
+    </form>
+    {% endif %}
 
     </div>
 
@@ -63,27 +77,24 @@
     {% if sclass.questions %}
    
         
-      <table class="table table-sm qtable">
+      <table class="table table-sm table-striped qtable">
             <tr>
                 <th>Page</th>
                 <th>Seq</th>
                 <th>Format</th>
                 <th>Question</th>
-                <th>Delete</th>
             </tr>       
         {% for q in  sclass.questions %}
             <div>
                 <tr>
-                <form method="POST" id="items">
+                <form method="POST">
                 {% csrf_token %}
                     <td><input onchange="this.form.submit()" type="number" name="page" value="{{ q.page }}"></td>    
                     <td><input onchange="this.form.submit()" type="number" name="sequence" value="{{ q.sequence}}"></td>    
-                    <td>{{q.question.format}}</td>
-                    <td>{{q.question.question}}</td>
-                    <td><button name="item_delete" value="{{q.id}}">X</button></td>
+                    <td>{{q.format}}</td>
+                    <td>{{q.question}}</td>
                     <input type="hidden" name="survey" value="{{sclass.survey.id}}">                    
                     <input type="hidden" name="update_item" value="{{q.id}}">                    
-                    
                 </form>
                 </tr>
             </div>
@@ -95,54 +106,5 @@
 
 </div>   
 
-{% if sclass.survey.id %}
-<div class="p-3 bordered">
-<form method="POST">
-    {% csrf_token %}
-
-
-<div class="p-3">
-    <button name="add_selected" type="submit" value={{ layout.id }}>Add Selected Questions</button>
-</div>
-
-<div class="row">
-    <div class="col-md-2">
-            <h3>Question</h3>
-            <div> 
-                {% for q  in qlabels %}
-                    <div>
-                        <input type="checkbox" name="qlabel_list" value="{{ q.label }}">
-                        <button type="submit" name="label_select" value="{{ q.label}}">{{q.label}}</button>
-                    </div>
-                {% endfor %}
-                 <input type="hidden" name="survey" value="{{sclass.survey.id}}">
-                 <input type="hidden" name="last_label_select" value="{{last_label_select}}">
-            </div> 
-        </form>
-    </div>
-    <div class="col-md-5">
-    <h3> {{ label_select }}</h3>
-        <div style="height:300px; overflow:scroll">
-        {% for i in label_questions %}
-            <div><input type="checkbox" name="qlist" > {{ i.question }}</div>
-        {% endfor %} 
-        </div>
-    </div>
-
-    <div class="col-md-5">
-    <h3>CSV File Upload</h3>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ question_upload_form.as_p }}
-            <button type="submit"  name="upload_file">Upload</button>
-            
-            {% if sclass %}
-                <input type="hidden" name="survey" value="{{sclass.survey.id}}">
-            {% endif %}
-        </form>
-    </div>
-</div>
-{% endif %}
-</div>
 
 {% endblock %}

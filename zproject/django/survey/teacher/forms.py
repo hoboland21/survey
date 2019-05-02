@@ -8,7 +8,7 @@ from datetime import datetime
 class SurveyForm(ModelForm) :
     class Meta:
         model = Survey
-        exclude = ["id",]
+        exclude = ["id","locked",]
 
 #================================
 class QuestionForm(ModelForm) :
@@ -20,4 +20,4 @@ class QuestionForm(ModelForm) :
 class ImportFileForm(forms.ModelForm):
     class Meta:
         model = ImportFile
-        fields = ('document' ,'description')
+        fields = ('document', )

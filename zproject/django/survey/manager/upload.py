@@ -1,10 +1,10 @@
 from teacher.forms import ImportFileForm, SurveyForm
-from teacher.models import ImportFile , Survey, Question, Items
+from teacher.models import ImportFile , Survey, Question
 from .tools import *
 import os
 
 #------------------
-QFIELDS = ["format","question","label","group"]
+QFIELDS = ["format","question","sequence","page"]
 #------------------
 def delfile(id) :
     dobj = ImportFile.objects.get(id=id)
@@ -12,20 +12,24 @@ def delfile(id) :
     dobj.delete()
 
 #------------------
-def add_questions(doc) :
+def add_questions(doc,survey) :
     qlist = csv_read(doc.document.path) 
+    old_questions = Question.objects.filter(survey__id=survey.id)
+    for oq in old_questions :
+        oq.delete()
+
     for q in qlist :
-        if not Question.objects.filter(label=q["label"],question=q["question"],group=q["group"]) :
-            question =Question()
-            for qf in QFIELDS :
-                setattr(question,qf,q[qf])
-            question.save()
+        question =Question()
+        question.survey = survey
+        for qf in QFIELDS :
+            setattr(question,qf,q[qf])
+        question.save()
 
 #------------------
-def upload_file(request) :
+def upload_file(request,sclass) :
     import_file = ImportFile()
     form = ImportFileForm(request.POST, request.FILES, instance=import_file)
     if form.is_valid():
         import_file.save()  
-        add_questions(import_file)
+        add_questions(import_file,sclass.survey)
         delfile(import_file.id)

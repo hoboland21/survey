@@ -39,16 +39,16 @@ services:
  #     - rabbitmq
 
 
- # angular:
- #   build:
- #     context: angular
- #   volumes:
- #     - ./zproject:/usr/src/app/
- #   ports:
- #     - "4200:4200"
- #   entrypoint:
- #     - /bin/sh 
- #     - /usr/src/app/angular/startup.sh
+  angular:
+    build:
+      context: angular
+    volumes:
+      - ./zproject:/usr/src/app/
+    ports:
+      - "4200:4200"
+    entrypoint:
+      - /bin/sh 
+      - /usr/src/app/angular/startup.sh
 
   nginx:
     build:

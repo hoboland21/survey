@@ -1,0 +1,7 @@
+<h3>Please Select a Survey</h3>
+
+<hr>
+<ul>
+<li *ngFor="let surv of surveys" > 
+<a routerLink="/main/survey/{{surv.id}}">Fred {{surv.name}} - {{ surv.description }} </a></li>
+</ul>
