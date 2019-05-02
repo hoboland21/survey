@@ -12,11 +12,19 @@ export class DashboardComponent implements OnInit {
   surveys:ISurvey[];
   errorMessage = "";
   constructor(
-    private router: Router,
+    private _router:  Router,
+    private _route:   ActivatedRoute,
     private surveyService: SurveyService
   ) { }
-
-  ngOnInit() {
+//-------------------------------
+survey(id:number) {
+  this._router.navigate(['/main/survey',id]);
+}
+//-------------------------------
+//-------------------------------
+//-------------------------------
+//-------------------------------
+ngOnInit() {
   
     this.surveyService.getSurveyList().subscribe(
       surveys => this.surveys = surveys,

@@ -3,5 +3,6 @@
 <hr>
 <ul>
 <li *ngFor="let surv of surveys" > 
-<a routerLink="/main/survey/{{surv.id}}">{{surv.name}} - {{ surv.description }} </a></li>
+<div (click)="survey(surv.id)" >{{surv.name}} - {{ surv.description }} </div>
+</li>
 </ul>
