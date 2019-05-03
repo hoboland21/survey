@@ -13,7 +13,7 @@ class Survey(models.Model):
     locked          =   models.BooleanField(default=False)
     created         =   models.DateTimeField(auto_now_add=True)
     def __str__(self) :
-        return "{} -- {}".format(self.name,self.label)
+        return "{}".format(self.name)
 
 class Question(models.Model):
     survey          =   models.ForeignKey(Survey, on_delete=models.CASCADE)

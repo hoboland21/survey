@@ -1,0 +1,23 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+
+
+{% block body_main %}
+<form>
+{% for q in questions %}
+
+<div> 
+    <input type="radio" name="answer-{{ q.id }}" value="1" >One
+    <input type="radio" name="answer-{{ q.id }}" value="2" >Two
+    <input type="radio" name="answer-{{ q.id }}" value="3" >Three
+    <input type="radio" name="answer-{{ q.id }}" value="4" >Four
+</div>
+{% endfor %}
+<button type="submit">Save</button>
+</form>
+
+
+{{ questions }}
+{{ survey }}
+{% endblock %}

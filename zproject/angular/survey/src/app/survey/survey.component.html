@@ -1,8 +1,28 @@
-<h2>Suvey Form</h2>
 
-<h3>{{ survey.name }}</h3>
-<h4>{{ survey.description }}</h4>
+<div class="card">
+  <div  class="card-header">
+    <h4>{{survey.name}}</h4>
+    <h4>{{survey.description}}</h4>
+  </div>
 
-<div *ngFor="let q of questions ">
-  {{ q.question }}
+  <div class="card-body">
+    <form [formGroup]="answerForm" ngSubmit="onSubmit()" novalidate>
+      <label for="check">
+        <input id="check" type="radio" value="1"> Strongly Disagree
+      </label>
+      <label for="check">
+        <input id="check" type="radio" value="2"> Disagree
+      </label>
+      <label for="check">
+        <input id="check" type="radio" value="3"> Agree
+      </label>
+      <label for="check">
+        <input id="check" type="radio" value="4"> Strongly Agree
+      </label>
+
+    <button class="btn btn-primary" type="submit" 
+        (click)="onSubmit" [disabled]='answerForm.invalid'>Continue</button>
+    </form>
+  </div>
+
 </div>

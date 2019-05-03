@@ -1,9 +1,14 @@
 {% extends "base/base.html" %}
 {% load static %}
 
-
-
 {% block body_main %}
+
+{% for survey in surveys  %}
+
+<div><a href='{% url "testing" survey.id %}' >
+        {{ survey.name }} {{ survey.description }} </a></div>
+
+{% endfor %}
 
 
 {% endblock %}
