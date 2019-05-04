@@ -1,4 +1,5 @@
 export interface IQuestion {
+    id: number;
     survey:number;
     format: string;
     question: string;

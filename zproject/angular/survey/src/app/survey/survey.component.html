@@ -4,28 +4,14 @@
     <h4>{{survey.name}}</h4>
     <h4>{{survey.description}}</h4>
   </div>
-  <div>
-    <h4>{{ questions[page_number].question }}</h4>
-    Question Number {{ page_number}}
-  </div>
+ 
   <div class="card-body">
-    <form  #answerForm="ngForm" (submit)="submitForm(answerForm)" novalidate>
-      <label for="check">
-        <input class='form-control' name="check" id="check" type="radio" value="1"> Strongly Disagree
-      </label>
-      <label for="check">
-        <input class='form-control' name="check" id="check" type="radio" value="2"> Disagree
-      </label>
-      <label for="check">
-        <input class='form-control'  name="check" id="check" type="radio" value="3"> Agree
-      </label>
-      <label for="check">
-        <input class='form-control'  name="check" id="check" type="radio" value="4"> Strongly Agree
-      </label>
-
-    <button *ngIf="!answerForm.invalid" class="btn btn-primary" type="submit" >Next</button>
-    </form>
+    <div>
+      <h4>{{ questions[page_number].question }}</h4>
+      Question Number {{ page_number}}
+    </div>
+    <hr>
+    <app-survey-check></app-survey-check>
   </div>
 
 </div>
-{{ answerForm.check.value }}

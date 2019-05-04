@@ -1,0 +1,33 @@
+
+<form [formGroup]="answerForm" (ngSubmit)="onSubmit()" novalidate>
+<table class="table" width="100%">
+<tr>
+  <td width="25%">
+    <label for="check">
+    <input class='form-control'formControlName="check" name="check" id="check" type="radio" value="1">
+    Strongly Disagree
+    </label>
+  </td>
+  <td  width="25%">
+    <label for="check">
+    <input class='form-control' formControlName="check" name="check" id="check" type="radio" value="2">
+    Disagree
+    </label>
+  </td>
+  <td  width="25%">
+    <label for="check">
+    <input class='form-control' formControlName="check" name="check" id="check" type="radio" value="3"> 
+    Agree
+    </label>
+  </td>
+  <td  width="25%">
+    <label for="check">
+      <input class='form-control' formControlName="check" name="check" id="check" type="radio" value="4"> 
+      Strongly Agree
+    </label>
+  </td>
+</tr>
+</table>
+ 
+<button  *ngIf="answerForm.valid" class="btn btn-primary" type="submit" >Next</button>
+</form>

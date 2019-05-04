@@ -8,13 +8,15 @@ import { SurveyComponent } from './survey/survey.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NotfoundComponent } from './system/notfound/notfound.component';
+import { SurveyCheckComponent } from './survey/survey-check/survey-check.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     SurveyComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    SurveyCheckComponent
   ],
   imports: [
     BrowserModule,
