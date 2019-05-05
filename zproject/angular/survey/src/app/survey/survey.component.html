@@ -11,7 +11,8 @@
       Question Number {{ page_number}}
     </div>
     <hr>
-    <app-survey-check></app-survey-check>
+    <app-survey-check (marked)="mark_answer($event)"></app-survey-check>
   </div>
 
 </div>
+Answers: {{ answers }}

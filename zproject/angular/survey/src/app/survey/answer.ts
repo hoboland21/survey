@@ -1,7 +1,6 @@
 export interface IAnswer {
-    id:number;
-    student: number;
+    student: string;
     question: number;
-    answer: number;
+    answer: string;
     
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { IAnswer } from '../answer';
 
 @Component({
   selector: 'app-survey-check',
@@ -8,6 +9,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class SurveyCheckComponent implements OnInit {
   isSubmitted = false;
+  answer:number ;
+  @Output() marked = new EventEmitter<number>();
 
   constructor(
     private formBuilder:FormBuilder,
@@ -15,19 +18,23 @@ export class SurveyCheckComponent implements OnInit {
 
   ) { }
 
+
+
   answerForm = this.formBuilder.group({
     check:["",[Validators.required]]
   }) 
-  get myForm() {
-    return this.answerForm.get('check');
+  //get myForm() {
+  //  return this.answerForm.get('check');
   
   
-  }
+ // }
   onSubmit() {
     this.isSubmitted = true;
     if(!this.answerForm.valid) {
       return false;
     } else {
+      
+      this.marked.emit(this.answerForm.value["check"]);
       this.answerForm.controls['check'].reset();
 
     }
