@@ -11,7 +11,7 @@ export class SurveyCheckComponent implements OnInit {
   isSubmitted = false;
   answer:number ;
   @Output() marked = new EventEmitter<number>();
-
+  @Input() question :string;
   constructor(
     private formBuilder:FormBuilder,
 

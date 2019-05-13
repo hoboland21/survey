@@ -87,24 +87,11 @@
   .mcs_bg_blue {
     background-color: #9CB6E7; }
 
-  .card {
-    background-color: rgb(249, 252, 255); 
-    border:1px solid royalblue;
+  .answer-background {
+    background-image: linear-gradient(to right,rgb(243, 232, 220),  rgb(250, 250, 250));
 
   }
-  .card-header {
-    background-image: linear-gradient(to right,rgb(226, 226, 226), rgb(129, 129, 129));
-    text-align: center;
 
-  }
-  .card-footer {
-    background-color: royalblue; 
-    color: white;
-    font: size 9pt;
-    font-family:Nova;
-    padding:.5em;
-
-  }
   .head_1 {
     font-family:OpenSans;
     font-size:20pt;

@@ -1,18 +1,29 @@
 
 <div class="card">
   <div  class="card-header">
-    <h4>{{survey.name}}</h4>
-    <h4>{{survey.description}}</h4>
-  </div>
- 
-  <div class="card-body">
-    <div>
-      <h4>{{ questions[page_number].question }}</h4>
-      Question Number {{ page_number}}
+    <div *ngIf= "page_number > questions.length || page_number == 0">  
+      <h4>{{survey.name}}</h4>
+      <h4>{{survey.description}}</h4>
     </div>
-    <hr>
-    <app-survey-check (marked)="mark_answer($event)"></app-survey-check>
   </div>
-
+  <div class="card-body">
+    <div class="list-container answer-background">
+      <div *ngIf="page_number == 0">
+        <form [formGroup]="studentForm" (ngSubmit)="start()" novalidate>  
+            <input class='form-control' formControlName="test_code" name="test_code" id="test_code" type="text"> 
+                
+            <label for="test_code" >Please Enter Test Code</label>
+            <br>
+          <button  [disabled] = "!studentForm.valid" class="btn btn-primary" type="submit" >Begin Survey</button>
+        </form>  
+      </div>
+      <div *ngIf= "page_number > questions.length">
+        <h3>End Page</h3>
+        <button (click)="finish()">Finish  Survey</button>  
+      </div>
+      <div *ngIf="page_number && page_number <= questions.length">
+        <div><app-survey-check [question]="questions[page_number-1].question" (marked)="mark_answer($event)"></app-survey-check></div>
+      </div>
+    </div>
+  </div>
 </div>
-Answers: {{ answers }}

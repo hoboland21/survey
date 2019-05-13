@@ -20,7 +20,6 @@ class Question(models.Model):
     format          =   models.CharField(max_length=30,blank=True)
     question        =   models.CharField(max_length=2048)
     sequence        =   models.SmallIntegerField()
-    page            =   models.SmallIntegerField(default=1)
     created         =   models.DateTimeField(auto_now_add=True)
 
 class Student(models.Model):

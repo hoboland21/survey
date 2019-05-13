@@ -1,5 +1,5 @@
 export interface IAnswer {
-    student: string;
+    student: number;
     question: number;
     answer: string;
     

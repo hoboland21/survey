@@ -1,33 +1,25 @@
-
+<div style="padding:1em">
+  <h4>{{question}}</h4>
+</div>
+<hr>
 <form [formGroup]="answerForm" (ngSubmit)="onSubmit()" novalidate>
-<table class="table" width="100%">
-<tr>
-  <td width="25%">
-    <label class="form-check-label" for="check">
-    <input class='form-check check-custom' formControlName="check" name="check" id="check" type="radio" value="1">
-    Strongly Disagree
-    </label>
-  </td>
-  <td  width="25%">
-    <label for="check">
-    <input class='form-control' formControlName="check" name="check" id="check" type="radio" value="2">
-    Disagree
-    </label>
-  </td>
-  <td  width="25%">
-    <label for="check">
-    <input class='form-control' formControlName="check" name="check" id="check" type="radio" value="3"> 
-    Agree
-    </label>
-  </td>
-  <td  width="25%">
-    <label for="check">
-      <input class='form-control' formControlName="check" name="check" id="check" type="radio" value="4"> 
-      Strongly Agree
-    </label>
-  </td>
-</tr>
-</table>
- 
-<button  *ngIf="answerForm.valid" class="btn btn-primary" type="submit" >Next</button>
+  <ul>
+    <li>
+      <input class='form-control' formControlName="check" name="check" id="check1" type="radio" value="4"> 
+      <label for="check1">Strongly Agree</label>
+    </li>
+    <li>
+        <input class='form-control' formControlName="check" name="check" id="check2" type="radio" value="3"> 
+        <label for="check2">Agree</label>
+    </li>
+    <li>
+        <input class='form-control' formControlName="check" name="check" id="check3" type="radio" value="2">
+        <label for="check3">Disagree</label>
+    </li>
+    <li>
+        <input class='form-check check-custom' formControlName="check" name="check" id="check4" type="radio" value="1">
+        <label for="check4">Strongly Disagree</label>
+    </li>
+  </ul>  
+  <button  [disabled]="!answerForm.valid" class="btn btn-primary" type="submit" >Next</button>
 </form>

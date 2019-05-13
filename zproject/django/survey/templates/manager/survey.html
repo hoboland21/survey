@@ -67,44 +67,33 @@
         {% endif %}
     </form>
     {% endif %}
-
     </div>
-
     <div class="col-md-8">
-    <h3>{{sclass.survey.name }}</h3>
-    <h5>{{sclass.survey.description }}</h5>
-    <p>{{sclass.survey.created }}</p>
-    {% if sclass.questions %}
-   
-        
-      <table class="table table-sm table-striped qtable">
-            <tr>
-                <th>Page</th>
-                <th>Seq</th>
-                <th>Format</th>
-                <th>Question</th>
-            </tr>       
-        {% for q in  sclass.questions %}
-            <div>
+        <h3>{{sclass.survey.name }}</h3>
+        <h5>{{sclass.survey.description }}</h5>
+        <p>{{sclass.survey.created }}</p>
+        {% if sclass.questions %}
+        <table class="table table-sm table-striped qtable">
                 <tr>
-                <form method="POST">
-                {% csrf_token %}
-                    <td><input onchange="this.form.submit()" type="number" name="page" value="{{ q.page }}"></td>    
-                    <td><input onchange="this.form.submit()" type="number" name="sequence" value="{{ q.sequence}}"></td>    
-                    <td>{{q.format}}</td>
-                    <td>{{q.question}}</td>
-                    <input type="hidden" name="survey" value="{{sclass.survey.id}}">                    
-                    <input type="hidden" name="update_item" value="{{q.id}}">                    
-                </form>
-                </tr>
-            </div>
-        {% endfor %}
-     </table>
+                    <th>Seq</th>
+                    <th>Format</th>
+                    <th>Question</th>
+                </tr>       
+            {% for q in  sclass.questions %}
+                    <tr>
+                    <form method="POST">
+                    {% csrf_token %}
+                        <td><input onchange="this.form.submit()" type="number" name="sequence" value="{{ q.sequence}}"></td>    
+                        <td>{{q.format}}</td>
+                        <td>{{q.question}}</td>
+                        <input type="hidden" name="survey" value="{{sclass.survey.id}}">                    
+                        <input type="hidden" name="update_item" value="{{q.id}}">                    
+                    </form>
+                    </tr>
+            {% endfor %}
+        </table>
     
     </div>
     {% endif %}
-
 </div>   
-
-
 {% endblock %}

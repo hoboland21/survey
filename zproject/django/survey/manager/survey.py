@@ -10,6 +10,10 @@ def survey(request) :
     result = {}
     sclass = 0
 
+    if "update_item" in request.POST :
+        q = Question.objects.get(id=request.POST["update_item"])
+        q.sequence = request.POST["sequence"]
+        q.save()
  
     if "survey" in request.POST :
         sclass = SurveyClass(request.POST["survey"])
@@ -37,8 +41,7 @@ def survey(request) :
     if "upload_file" in request.POST :
         if sclass.survey.locked == False :
             upload_file(request,sclass)
-    
-    
+
     result["question_upload_form"] = ImportFileForm()
     result["survey_list"] = Survey.objects.all()
 

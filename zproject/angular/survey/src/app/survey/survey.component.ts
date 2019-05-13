@@ -5,7 +5,9 @@ import { ISurvey } from '../survey/survey';
 import { IQuestion } from './question';
 import { IStudent } from './student';
 import { IAnswer } from './answer';
-import { conditionallyCreateMapObjectLiteral } from '@angular/compiler/src/render3/view/util';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
+import { AnswerService } from './answer.service';
 
 @Component({
   selector: 'app-survey',
@@ -19,6 +21,7 @@ export class SurveyComponent implements OnInit {
   current_question: IQuestion;
   studentId = '';
   student = {} as IStudent ;
+  new_rec : IStudent;
   answers: IAnswer[] = [];
   page_number = 0;
   
@@ -28,20 +31,70 @@ export class SurveyComponent implements OnInit {
     private _router:  Router,
     private _route:   ActivatedRoute,
     private surveyService: SurveyService,
+    private formBuilder:FormBuilder,
+    private answerService: AnswerService, 
+
 
   ) { }
 
+
+  studentForm = this.formBuilder.group({
+    test_code:["",[Validators.required]]
+  }) 
   pageForward() {
     
-    if (this.page_number < this.questions.length) {
+    if (this.page_number <= this.questions.length) {
       this.page_number += 1;
-      console.log(this.answers)
     }
   }
+  
+
+  write_answers(id) {
+    this.answers.forEach(answer => {
+      answer.student=id;
+      this.answerService.addAnswer(answer).subscribe(
+        data => {    console.log("answer",data);   } ,
+        error => {
+          this.errorMessage= "Failed to create student Component";
+        }
+      )
+    });
+  }
+
+
+  write_survey() {
+
+    this.answerService.addStudent(this.student).subscribe(
+      data => {  
+        console.log("Data Id", data.id);
+        this.write_answers(data.id);  
+      } ,
+      error => {
+        this.errorMessage= "Failed to create student Component";
+      }
+      // output as an event -- send the student id out to be used
+    )
+
+    console.log(this.student);
+  }
+
+  start() {
+    this.pageForward();
+    this.student.test_code = this.studentForm.value["test_code"]
+    this.answers = [];
+  }
+
+  finish() {
+    this.write_survey();
+    this.page_number=0;
+    this.studentForm.patchValue({test_code: ""})
+    this.ngOnInit();
+  }
+
   mark_answer(mark) {
     var answer:IAnswer = {
-      student: this.student.name,
-      question: this.questions[this.page_number].id,
+      student: 0,
+      question: this.questions[this.page_number-1].id,
       answer: mark
     }
     this.answers.push(answer)
@@ -70,7 +123,7 @@ export class SurveyComponent implements OnInit {
     this.student = {
       name:this.studentId,
       survey: this.id,
-      test_code:"beta",
+      test_code:"",
       created:new Date()
     }
   }

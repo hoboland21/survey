@@ -4,7 +4,7 @@ from .tools import *
 import os
 
 #------------------
-QFIELDS = ["format","question","sequence","page"]
+QFIELDS = ["format","question","sequence"]
 #------------------
 def delfile(id) :
     dobj = ImportFile.objects.get(id=id)
