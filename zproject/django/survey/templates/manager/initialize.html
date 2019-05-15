@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block body_main %}
+
+   <hr>
+    <p><b>Teacher CSV File Upload</b></p>
+    <hr>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ course_upload_form.as_p }}
+        <button type="submit"  name="upload_course">Upload</button>
+
+    </form>
+
+{% endblock %}

@@ -18,6 +18,7 @@ from django.urls import path, re_path, include
 from django.views.decorators.csrf import ensure_csrf_cookie
 from teacher.views import welcome, testing
 from manager.survey import survey
+from manager.initialize import initialize
 
 from django.views.generic import TemplateView
 
@@ -26,6 +27,7 @@ urlpatterns = [
     path('',welcome, name="welcome"),
     path('admin/', admin.site.urls),
     path('testing/<int:id>/',testing, name="testing"),
+    path('initialize/',initialize, name="initialize"),
     path('_survey/',survey,name="survey"),
     path('webapi/',include ('webapi.urls')),
     re_path(r'^main/.*$', ensure_csrf_cookie(TemplateView.as_view(template_name="ang/main.html")),name="main"),
