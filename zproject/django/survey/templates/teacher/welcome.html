@@ -3,12 +3,9 @@
 
 {% block body_main %}
 
-{% for survey in surveys  %}
-
-<div><a href='{% url "testing" survey.id %}' >
-        {{ survey.name }} {{ survey.description }} </a></div>
-
-{% endfor %}
-
+<h2>Welcome to the survey</h2>
+<h3>
+<a href='{% url "main"%}'>Run</a>
+</h3>
 
 {% endblock %}

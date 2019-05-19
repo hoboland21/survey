@@ -28,3 +28,8 @@ class AnswerSerializer(serializers.ModelSerializer):
   class Meta:
     model= Answer
     fields = '__all__'
+    
+class CourseSerializer(serializers.ModelSerializer):
+  class Meta:
+    model= Course
+    fields = '__all__'

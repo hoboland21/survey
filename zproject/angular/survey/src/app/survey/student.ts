@@ -2,7 +2,8 @@ export interface IStudent {
     id?:number;
     name:string;
     survey: number;
-    test_code : string;
+    grade_level? : string;
+    test_code? : string;
     created: Date;
     
 }

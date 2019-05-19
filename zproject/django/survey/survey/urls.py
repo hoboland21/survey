@@ -26,7 +26,6 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('',welcome, name="welcome"),
     path('admin/', admin.site.urls),
-    path('testing/<int:id>/',testing, name="testing"),
     path('initialize/',initialize, name="initialize"),
     path('_survey/',survey,name="survey"),
     path('webapi/',include ('webapi.urls')),

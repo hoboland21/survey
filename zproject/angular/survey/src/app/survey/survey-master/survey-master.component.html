@@ -1,0 +1,57 @@
+
+<div class="card">
+  <div  class="card-header">
+      <h4>{{survey.name}}
+      Teacher : 
+      Course : </h4>
+  </div>
+  <div class="card-body">
+		<div class="list-container answer-background">
+
+		
+		<div [ngSwitch]="surveyStep">
+			
+			<app-survey-zero *ngSwitchCase="'0'"
+				[student]="student"
+				(studentOut)="register_student_header($event)">
+			</app-survey-zero>
+			
+			<app-survey-one *ngSwitchCase="'1'"
+				[courses] = "courses"
+				(courseOut)="register_course($event)">
+			</app-survey-one>
+			
+			<app-survey *ngSwitchCase="'2'"
+				[student]="student" 
+				[course]="course" 
+				(surveyOut)="surveyOut()">
+			</app-survey>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

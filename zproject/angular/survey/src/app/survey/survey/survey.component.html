@@ -1,0 +1,12 @@
+<div *ngIf="page_number < questions.length">
+  <div>
+    <app-survey-check 
+          [question]="questions[page_number].question" 
+          (marked)="mark_answer($event)">
+    </app-survey-check>
+  </div>
+</div>
+<div *ngIf="page_number >= questions.length">
+  <button (click)="next_course()">Next Course</button>
+  <button >Finished Survey</button>
+</div>

@@ -3,14 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
 import { NotfoundComponent } from './system/notfound/notfound.component';
-import { SurveyComponent } from './survey/survey.component';
+import { SurveyMasterComponent } from './survey/survey-master/survey-master.component';
 
 const routes: Routes = [
     {   path: 'main',
         component: DashboardComponent
     },
     {   path: 'main/survey/:id',
-        component: SurveyComponent
+        component: SurveyMasterComponent
 
     },
     {   path: '**', 

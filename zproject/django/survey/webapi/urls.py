@@ -23,6 +23,7 @@ from .views import *
 urlpatterns = [
    path('users/',UserList.as_view()),
    path('survey/',SurveyList.as_view()),
+   path('course/',CourseSearch.as_view()),
    path('survey/<int:id>/',SurveySearch.as_view()),
    path('question/<int:id>/',QuestionSearch.as_view()),
    path('answer/',AnswerSend.as_view()),
