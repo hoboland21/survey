@@ -13,6 +13,7 @@ import { SurveyMasterComponent } from './survey/survey-master/survey-master.comp
 import { SurveyStepZeroComponent }  from './survey/survey-master/survey-step-zero.component';
 import { SurveyStepOneComponent }  from './survey/survey-master/survey-step-one.component';
 import { AppConstants } from './system/app.constants';
+import { SurveyAnswerComponent } from './survey/survey-answer/survey-answer.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AppConstants } from './system/app.constants';
     SurveyCheckComponent,
     SurveyMasterComponent,
     SurveyStepZeroComponent,
-    SurveyStepOneComponent
+    SurveyStepOneComponent,
+    SurveyAnswerComponent
   ],
 
   imports: [

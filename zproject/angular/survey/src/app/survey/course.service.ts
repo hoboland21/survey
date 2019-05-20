@@ -14,16 +14,23 @@ export class CourseService {
 
   constructor( private http: HttpClient) { }
 //==================================================
-  getCourseList(): Observable<ICourse[]> {
-    const courseURL = `/webapi/course/`;
-    return this.http.get<ICourse[]>(courseURL).pipe(
-      catchError(this.handleError)
-    );
-  }
+getCourseList(): Observable<ICourse[]> {
+  const courseURL = `/webapi/course/`;
+  return this.http.get<ICourse[]>(courseURL).pipe(
+    catchError(this.handleError)
+  );
+}
+//==================================================
+getCourse(id:number): Observable<ICourse> {
+  const courseURL = `/webapi/course/${id}/`;
+  return this.http.get<ICourse>(courseURL).pipe(
+    catchError(this.handleError)
+  );
+}
 
 
 //==================================================
-  private handleError(err: HttpErrorResponse) {
+private handleError(err: HttpErrorResponse) {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
     let errorMessage = '';

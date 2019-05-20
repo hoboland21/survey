@@ -6,6 +6,7 @@ import { IAnswer } from '../answer';
 import { AnswerService } from '../answer.service';
 import { IStudent } from '../student';
 import { ISurvey } from '../survey';
+
 import { ICourse } from '../course';
 
 @Component({
@@ -23,6 +24,7 @@ export class SurveyComponent implements OnInit {
   survey : ISurvey;
   questions: IQuestion[];
   answers: IAnswer[] = [];
+  answered: IAnswer[];
   page_number = 0;
   errorMessage = '';
  
@@ -34,6 +36,9 @@ export class SurveyComponent implements OnInit {
   ) { }
 //====================================
   pageForward() {
+    if(this.page_number+1 == this.questions.length) {
+      this.write_answers();
+    } 
     if (this.page_number <= this.questions.length) {
       this.page_number += 1;
     }
@@ -59,13 +64,14 @@ export class SurveyComponent implements OnInit {
     }
     this.answers.push(answer)
     this.pageForward();
-    
   }
-
-
 //====================================
   next_course() {
-    this.surveyOut.emit()
+    this.surveyOut.emit();
+  }
+//====================================
+  finished() {
+    this._router.navigate(['/main']);
   }
 //====================================
 ngOnInit() {

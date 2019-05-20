@@ -19,7 +19,7 @@ import { CourseService } from '../course.service';
     <option></option>
   </select>
 
-  <button class="btn btn" type="submit" [disabled]="!courseForm.valid">
+  <button class="btn btn-primary mt-3" type="submit" [disabled]="!courseForm.valid">
     Next</button>
 </form>
 

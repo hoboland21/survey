@@ -29,7 +29,6 @@ export class AnswerService {
 
   //==================================================
   addAnswer(answer: IAnswer): Observable<IAnswer> {
-
     return this.http
       .post<IAnswer>(`${this.baseUrl}/answer/`, answer,
         {
@@ -37,10 +36,14 @@ export class AnswerService {
             'Content-Type': 'application/json',
           })
         }).pipe(catchError(this.handleError));
-
   }
-
-
+//==================================================
+  getAnswer(studentId:number): Observable<IAnswer[]> {
+    const courseURL = `/webapi/answer/${studentId}/`;
+    return this.http.get<IAnswer[]>(courseURL).pipe(
+      catchError(this.handleError)
+    );
+  }
 //==================================================
   private handleError(err: HttpErrorResponse) {
     // in a real world app, we may send the server to some remote logging infrastructure

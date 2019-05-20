@@ -15,12 +15,12 @@ import { IStudent } from '../student';
 
 <select formControlName="grade_level" name="grade_level"
   id="grade_level" class="form-control">
-  <option disabled selected > -- select -- </option> 
+  <option disabled selected value> -- select -- </option> 
   <option *ngFor="let gl of GRADELEVEL" [value]='gl'>{{ gl }}</option>
   <option></option>
 </select>
 <label for="grade_level">Grade Level</label>
-<button type="submit" [disabled]="!studentForm.valid">
+<button class="mt-3 btn btn-primary" type="submit" [disabled]="!studentForm.valid">
   Begin Survey</button>
 </form>
   `

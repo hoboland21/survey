@@ -10,9 +10,11 @@
 .card {
   background-color:inherit;
   border:none;
+  font-size:12pt;
 }
 .card-header {
   text-align: center;
+  padding:.5em;
 
 }
 label {

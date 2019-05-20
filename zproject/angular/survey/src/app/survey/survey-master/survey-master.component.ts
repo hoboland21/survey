@@ -35,11 +35,8 @@ export class SurveyMasterComponent implements OnInit {
     private appconst: AppConstants,
     private _router:  Router,
     private _route:   ActivatedRoute,
-  ) { }
-  
+   ) { }
   GRADELEVEL = this.appconst.GRADELEVEL;
-
-   
   //====================================
   ngOnInit() {
     this.surveyId = Number(this._route.snapshot.paramMap.get('id'));
@@ -65,7 +62,6 @@ export class SurveyMasterComponent implements OnInit {
       created:new Date()
     }
   }
-
   //====================================
   register_student_header(newStudent:IStudent) {
     this.answerService.addStudent(newStudent).subscribe(

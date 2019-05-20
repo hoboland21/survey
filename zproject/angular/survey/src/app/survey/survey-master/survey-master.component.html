@@ -1,9 +1,13 @@
 
 <div class="card">
   <div  class="card-header">
-      <h4>{{survey.name}}
-      Teacher : 
-      Course : </h4>
+      <h5>{{survey.name}}</h5>
+			<span *ngIf="student">
+				Test Code : {{ student.test_code }} 
+				Grade : {{ student.grade_level }} </span><br>
+      <span  *ngIf="course">
+				Teacher : {{ course.instructor }}
+      	Course : {{ course.title }} </span>
   </div>
   <div class="card-body">
 		<div class="list-container answer-background">
