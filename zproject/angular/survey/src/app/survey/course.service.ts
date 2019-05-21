@@ -9,8 +9,6 @@ import { ICourse } from './course';
 })
 
 export class CourseService {
-  
-
 
   constructor( private http: HttpClient) { }
 //==================================================
@@ -27,8 +25,6 @@ getCourse(id:number): Observable<ICourse> {
     catchError(this.handleError)
   );
 }
-
-
 //==================================================
 private handleError(err: HttpErrorResponse) {
     // in a real world app, we may send the server to some remote logging infrastructure

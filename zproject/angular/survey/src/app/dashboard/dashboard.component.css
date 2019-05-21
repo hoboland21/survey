@@ -1,0 +1,31 @@
+.list-container {
+  width:600px;
+  border-radius:20px;
+  border:2px solid sienna;
+  display:block;
+  margin: 50px auto;
+  height:auto;
+  padding:40px;
+}
+.card {
+  background-color:inherit;
+  border:none;
+  font-size:12pt;
+}
+.card-header {
+  text-align: center;
+  padding:.5em;
+
+}
+label {
+  font-size:12pt;
+  font-family: Nova;
+  padding:10px;
+}
+
+ul {
+  list-style-type: none;
+}
+li {
+  font-size:16pt;
+}

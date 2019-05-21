@@ -8,7 +8,7 @@ import { IStudent } from '../student';
   selector: 'app-survey-zero',
   template: `
    <form [formGroup]="studentForm" (ngSubmit)="continue()" novalidate>
-<input type="text" id='test_code' class="form-control" 
+    <input type="text" id='test_code' class="form-control" 
   formControlName="test_code" name="test_code">
 
 <label for="test_code">Test Code</label>
@@ -19,7 +19,7 @@ import { IStudent } from '../student';
   <option *ngFor="let gl of GRADELEVEL" [value]='gl'>{{ gl }}</option>
   <option></option>
 </select>
-<label for="grade_level">Grade Level</label>
+<label for="grade_level">Grade Level</label><br><br>
 <button class="mt-3 btn btn-primary" type="submit" [disabled]="!studentForm.valid">
   Begin Survey</button>
 </form>

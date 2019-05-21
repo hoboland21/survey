@@ -1,8 +1,24 @@
-<h3>Please Select a Survey</h3>
 
-<hr>
-<ul>
-<li *ngFor="let surv of surveys" > 
-<div (click)="survey(surv.id)" >{{surv.name}} - {{ surv.description }} </div>
-</li>
-</ul>
+
+ <div class="card">
+   <div class="card-header">
+  <h3>Please Select a Survey</h3>
+ 
+   </div>
+  <div class="card-body">
+<div class="list-container answer-background">
+
+  <ul>
+  <li *ngFor="let surv of surveys" > 
+  <div style="cursor:pointer" (click)="survey(surv.id)" >{{surv.name}} - {{ surv.description }} </div>
+  </li>
+  </ul>
+
+  </div>
+ </div>
+  
+
+ 
+ 
+  
+</div>

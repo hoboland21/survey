@@ -7,11 +7,9 @@
   </div>
 </div>
 <div *ngIf="page_number >= questions.length">
-  <div *ngFor="let rec of answered ">
-    {{rec | json }}
-  
-  </div>
-  <button (click)="next_course()">Next Course</button>
-  <button (click)="finished()" >Finished Survey</button>
+  <button class="mb-2 btn btn-primary" (click)="next_course()">Next Course</button>
+  <hr>
   <app-survey-answer [studentId]="student.id"></app-survey-answer>
+  <hr>
+  <button  class="mt-2 btn btn-success" (click)="finished()" >Finished Survey</button>
 </div>

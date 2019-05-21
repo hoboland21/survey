@@ -22,3 +22,7 @@ label {
   font-family: Nova;
   padding:10px;
 }
+nameHeader {
+  font-size:12pt;
+  font-weight:bold;
+}
