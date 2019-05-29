@@ -28,9 +28,10 @@ urlpatterns = [
    path('survey/<int:id>/',SurveySearch.as_view()),
    path('question/<int:id>/',QuestionSearch.as_view()),
    path('answer/',AnswerSend.as_view()),
+   path('answers/',AnswersGet.as_view()),
    path('answer/<int:id>/',AnswerGet.as_view()),
-   path('student/',StudentSend.as_view())
-
+   path('student/',StudentSend.as_view()),
+   path('students/',StudentList.as_view())
 ]   
 
 urlpatterns=format_suffix_patterns(urlpatterns)
