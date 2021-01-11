@@ -2,33 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
-import { ISurvey } from './survey';
-import { IQuestion } from './question';
+import { IStudent } from './student';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SurveyService {
+//==================================================
+export class StudentService {
 
   constructor( private http: HttpClient) { }
+
 //==================================================
-  getSurveyList(): Observable<ISurvey[]> {
-    const surveyURL = `/webapi/survey/`;
-    return this.http.get<ISurvey[]>(surveyURL).pipe(
-      catchError(this.handleError)
-    );
-  }
-//==================================================
-  getSurvey(id:number): Observable<ISurvey> {
-    const surveyURL = `/webapi/survey/${id}`;
-    return this.http.get<ISurvey>(surveyURL).pipe(
-      catchError(this.handleError)
-    );
-  }
-//==================================================
-  getQuestions(id:number): Observable<IQuestion[]> {
-    const surveyURL = `/webapi/question/${id}`;
-    return this.http.get<IQuestion[]>(surveyURL).pipe(
+  getStudentList(): Observable<IStudent[]> {
+    const studentURL = `/webapi/students/`;
+    return this.http.get<IStudent[]>(studentURL).pipe(
       catchError(this.handleError)
     );
   }

@@ -1,0 +1,6 @@
+  <h3>Looking at the student list</h3>
+  <hr>
+  <h2> unique = {{ studFiltered.length }} </h2>
+  <div *ngFor="let stud of studFiltered">
+    {{ stud.name }}  -- {{stud.grade}} == {{ stud.lgth}}
+  </div>

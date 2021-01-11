@@ -14,6 +14,7 @@ import { SurveyStepZeroComponent }  from './survey/survey-master/survey-step-zer
 import { SurveyStepOneComponent }  from './survey/survey-master/survey-step-one.component';
 import { AppConstants } from './system/app.constants';
 import { SurveyAnswerComponent } from './survey/survey-answer/survey-answer.component';
+import { SurveyAdminComponent } from './survey/survey-admin/survey-admin.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SurveyAnswerComponent } from './survey/survey-answer/survey-answer.comp
     SurveyMasterComponent,
     SurveyStepZeroComponent,
     SurveyStepOneComponent,
-    SurveyAnswerComponent
+    SurveyAnswerComponent,
+    SurveyAdminComponent
   ],
 
   imports: [
